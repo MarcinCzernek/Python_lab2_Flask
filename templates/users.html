@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        document.addEventListener('DOMContentLoaded', e => {
+        for (let checkbox of document.querySelectorAll('input[type=checkbox]')) {
+        checkbox.value = checkbox.checked ? 1 : 0;
+        checkbox.addEventListener('change', e => {
+            e.target.value = e.target.checked ? 1 : 0;
+       });
+    }
+});
+    </script>
+    <title>Users</title>
+</head>
+<body>
+    <h1>
+        Users
+    </h1>
+
+    {%if users%}
+    <div class="users" style="margin-left:20%">
+      <h2>Registered Users List</h2>
+      <table style="width:100%;">
+
+       <thead>
+           <td>id</td>
+           <td>Username</td>
+           <td>Password</td>
+           <td>Admin</td>
+        </thead>
+
+        {%for user in users%}
+          <tr>
+              <td><a href="users_id/{{user[0]}}">{{user[0]}}</a></td>
+              <td><a href="users/{{user[1]}}">{{user[1]}}</a></td>
+          <td>{{user[2]}}</td>
+          <td>{{user[3]}}</td>
+
+          </tr>
+        {%endfor%}
+      </table>
+    </div>
+    {%endif%}
+
+   <div class="box">
+  			<h1>Add user</h1>
+  			<form action="/addUser" method="post">
+    			Login:<input type="text" name="username" id="username" placeholder="Username" required/>
+    			Password:<input type="password" name="password" id="password" placeholder="Password" required/>
+                <input type="hidden" name="admin" value="0" />
+                <input type="checkbox" name="admin" value="1" />
+    			<input type="submit" class="button" value="Wyślij zapytanie"/>
+  			</form>
+		</div>
+    <br>
+<a href=/main>Index</a><br>
+</body>
+</html>

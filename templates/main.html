@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <div class="box">
+  			<h1>Dodaj książkę</h1>
+            <h1>{{session.username }}</h1>
+            <h1>{{session.session_type }}</h1>
+  			<form action="/addBook" method="post">
+    			<input type="text" name="title" id="title" placeholder="title" required/>
+    			<br>
+    			<input type="text" name="author" id="author" placeholder="Author" required/>
+    			<br>
+    			<input type="submit" class="button" value="Dodaj"/>
+  			</form>
+		</div>
+
+    {%if books%}
+    <div class="books" style="margin-left:20%">
+      <h2>Books List</h2>
+      <table style="width:100%;">
+
+       <thead>
+           <td>Title</td>
+           <td>Author</td>
+        </thead>
+
+        {%for book in books%}
+          <tr>
+            <td>{{book[0]}}</td>
+          <td>{{book[1]}}</td>
+          </tr>
+        {%endfor%}
+      </table>
+    </div>
+    {%endif%}
+   <br>
+
+<a href=/users>Users</a><br>
+
+<a href=/logout>Logout</a>
+</body>
+</html>
